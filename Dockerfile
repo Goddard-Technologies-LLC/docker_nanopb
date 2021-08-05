@@ -34,6 +34,8 @@ WORKDIR /home/docker
 RUN mkdir host_mnt
 RUN wget https://github.com/nanopb/nanopb/archive/refs/tags/${NANOPB_VER}.tar.gz
 RUN tar -xvf ${NANOPB_VER}.tar.gz
+RUN cp -v nanopb-${NANOPB_VER}/pb*.? host_mnt/
 COPY generate_nanopb.sh /home/docker
 
+# Generate nanopb message structs
 CMD ["bash", "generate_nanopb.sh"]
