@@ -45,6 +45,6 @@ WORKDIR nanopb-0.4.5/examples/simple
 RUN make
 WORKDIR /home/docker
 RUN mkdir host_mnt
-COPY nanopb_gen.sh /home/docker
+COPY generate_nanopb.sh /home/docker
 
-CMD nanopb_gen.sh
+CMD ["bash", "generate_nanopb.sh"]
