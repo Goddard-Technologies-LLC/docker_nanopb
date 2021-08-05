@@ -21,7 +21,7 @@ docker volume create --driver local \
       --opt o=bind \
       $VOL_NAME
 
-docker build -t nanopb:latest .
+docker build --build-arg PB_VER=3.17.3 --build-arg NANOPB_VER=0.4.5 --tag nanopb:latest .
 
 docker run \
   --name $CONTAINER_NAME \
