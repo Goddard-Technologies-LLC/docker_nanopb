@@ -31,12 +31,9 @@ ARG NANOPB_VER
 RUN sudo apt-get install -yq python3-pip
 RUN pip3 install protobuf
 WORKDIR /home/docker
+RUN mkdir host_mnt
 RUN wget https://github.com/nanopb/nanopb/archive/refs/tags/${NANOPB_VER}.tar.gz
 RUN tar -xvf ${NANOPB_VER}.tar.gz
-WORKDIR nanopb-${NANOPB_VER}/examples/simple
-RUN make
-WORKDIR /home/docker
-RUN mkdir host_mnt
 COPY generate_nanopb.sh /home/docker
 
 CMD ["bash", "generate_nanopb.sh"]
