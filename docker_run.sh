@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# debug docker
+# docker run --detach --interactive --tty --volume nanopb_generator_volume:/home/docker/host_mnt nanopb:latest bash
+# docker exec -it CONTAINER bash
+
+NANOPB_LOG=proto/nanopb_out.log
+PYTHON_LOG=proto/python_out.log
 
 CONTAINER_NAME=nanopb_generator
 VOL_NAME=nanopb_generator_volume
@@ -17,7 +23,17 @@ docker volume create --driver local \
 
 docker build -t nanopb:latest .
 
-docker run -d \
+docker run \
   --name $CONTAINER_NAME \
   --volume $VOL_NAME:/home/docker/host_mnt \
   nanopb:latest
+
+if [ -s $PYTHON_LOG ]
+then
+  cat $PYTHON_LOG
+fi
+
+if [ -s $NANOPB_LOG ]
+then
+  cat $NANOPB_LOG
+fi
