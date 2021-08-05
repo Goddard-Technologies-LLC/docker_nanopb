@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 sudo apt-get update
-
 sudo apt-get -yq install \
  apt-transport-https \
  ca-certificates \
@@ -19,5 +18,4 @@ sudo apt-get update
 sudo apt-get -yq install docker-ce docker-ce-cli containerd.io
 
 sudo groupadd docker
-sudo usermod -aG docker ${USER}
-
+sudo usermod -aG docker ${USER} #reboot after

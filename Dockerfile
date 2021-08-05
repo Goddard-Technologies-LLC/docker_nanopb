@@ -13,16 +13,9 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN adduser docker sudo
 USER docker
 
-# Add ssh private key into container
-RUN sudo apt-get install -yq ssh
-ARG SSH_PRIVATE_KEY
-RUN mkdir $HOME/.ssh/
-RUN echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
-RUN chmod 600 ~/.ssh/id_rsa
-RUN ssh-keyscan github.com >> ~/.ssh/known_hosts
-
 # Install protobuf compiler
 WORKDIR /home/docker
+RUN sudo apt-get install -yq wget
 RUN wget https://github.com/protocolbuffers/protobuf/releases/download/v3.17.3/protobuf-python-3.17.3.tar.gz
 RUN tar -xvf protobuf-python-3.17.3.tar.gz
 RUN cd protobuf-3.17.3
