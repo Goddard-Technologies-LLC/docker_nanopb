@@ -31,6 +31,7 @@ RUN sudo apt-get install -yq python3-pip
 RUN pip3 install protobuf
 RUN wget https://github.com/nanopb/nanopb/archive/refs/tags/${NANOPB_VER}.tar.gz
 RUN tar -xvf ${NANOPB_VER}.tar.gz
+RUN make -C nanopb-${NANOPB_VER}/generator/proto
 RUN mkdir host_mnt
 COPY generate_nanopb.sh /home/docker
 
