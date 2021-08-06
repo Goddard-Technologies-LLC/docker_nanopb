@@ -12,7 +12,6 @@ VOL_NAME=nanopb_generator_volume
 PROTOPATH=$PWD/proto
 
 docker container rm $CONTAINER_NAME 
-
 docker volume rm $VOL_NAME
 
 docker volume create --driver local \
@@ -24,6 +23,7 @@ docker volume create --driver local \
 docker build --build-arg PB_VER=3.17.3 --build-arg NANOPB_VER=0.4.5 --tag nanopb:latest .
 
 docker run \
+  --env NANOPB_VER=0.4.5 \
   --name $CONTAINER_NAME \
   --volume $VOL_NAME:/home/docker/host_mnt \
   nanopb:latest

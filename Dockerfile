@@ -32,7 +32,6 @@ RUN pip3 install protobuf
 RUN wget https://github.com/nanopb/nanopb/archive/refs/tags/${NANOPB_VER}.tar.gz
 RUN tar -xvf ${NANOPB_VER}.tar.gz
 RUN mkdir host_mnt
-RUN cp -v nanopb-${NANOPB_VER}/pb*.? host_mnt/
 COPY generate_nanopb.sh /home/docker
 
 # Generate nanopb message structs
